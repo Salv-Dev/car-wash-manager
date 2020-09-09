@@ -16,7 +16,7 @@ exports.tb_scheduling =
     [
         {
             "id": 1,
-            "client": "Fulano de tal",
+            "client_id": 1,
             "date": "00/00/0000",
             "service": "Lavagem simples"
         }
