@@ -1,8 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import SchedulingList from './screens/SchedulingList';
 
 export default function Main() {
     return (
-        <View></View>
+        <SchedulingList />
     )
 }
