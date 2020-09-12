@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Car Wash Manager",
+    "slug": "car-wash-manager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-cwm.png",
+    "splash": {
+      "image": "./assets/cwm-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#212d47"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
