@@ -24,10 +24,11 @@ export const TitleInput = styled.Text`
 export const PhoneInput = styled.View``;
 
 export const Input = styled.TextInput`
-    padding: 10px;
+    padding: 5px;
     border-style: solid;
     border-bottom-width: 1px;
     border-color: #8a8a8a;
+    margin-bottom: 20px;
 `;
 
 export const SendButton = styled.TouchableOpacity`

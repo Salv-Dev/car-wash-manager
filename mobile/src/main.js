@@ -21,6 +21,7 @@ export default function Main() {
             <NavigationContainer>
                 <TitleApp>Car Wash Manager</TitleApp>
                 <Tab.Navigator
+                    initialRouteName={SchedulingList}
                     tabBarOptions={{
                         activeTintColor: "white",
                         indicatorStyle: { backgroundColor: '#1cade8' },
