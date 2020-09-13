@@ -1,5 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FlatList } from 'react-native';
+import ActionButton from 'react-native-action-button';
+import Schedule from './../../components/Schedule';
+
+import ModalCustomer from './../../modals/AddCustomer';
+import { Container } from './styles';
 
 export default function CustomerList() {
-    return null;
+    const [modal, setModal] = useState(false);
+
+    return (
+        <Container>
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data = { [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
+                initialNumToRender={10}
+                renderItem = { ({ item }) => <Schedule /> }
+                keyExtractor={(item, index) => index.toString()}
+            />
+
+            <ActionButton 
+                buttonColor="#1cade8"
+                onPress={() => setModal(true)}
+            />
+                
+            <ModalCustomer 
+                show={modal}
+                close={() => setModal(false)}
+            />
+
+        </Container>
+    )
 }
