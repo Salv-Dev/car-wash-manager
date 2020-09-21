@@ -19,5 +19,29 @@ exports.tb_scheduling =
             "client_id": 1,
             "date": "00/00/0000",
             "service": "Lavagem simples"
+        },
+        {
+            "id": 2,
+            "client_id": 2,
+            "date": "00/00/0000",
+            "service": "Lavagem simples"
+        },
+        {
+            "id": 3,
+            "client_id": 1,
+            "date": "00/00/0000",
+            "service": "Lavagem simples"
+        },
+        {
+            "id": 4,
+            "client_id": 2,
+            "date": "00/00/0000",
+            "service": "Lavagem simples"
+        },
+        {
+            "id": 5,
+            "client_id": 1,
+            "date": "00/00/0000",
+            "service": "Lavagem simples"
         }
     ]
