@@ -1,14 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import SchedulingList from './screens/SchedulingList';
+import TabNav from './components/TabNav';
 import CustomerList from './screens/CustomerList';
 
-import { TitleApp } from './styles.js';
-
-const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function Main() {
     return (
@@ -19,18 +17,12 @@ export default function Main() {
                 translucent
             />
             <NavigationContainer>
-                <TitleApp>Car Wash Manager</TitleApp>
-                <Tab.Navigator
-                    initialRouteName={SchedulingList}
-                    tabBarOptions={{
-                        activeTintColor: "white",
-                        indicatorStyle: { backgroundColor: '#1cade8' },
-                        style: { backgroundColor: '#141b2b' }
-                    }}
+                <Drawer.Navigator
+                    
                 >
-                    <Tab.Screen name="Agendamentos" component={SchedulingList} />
-                    <Tab.Screen name="Clientes" component={CustomerList} />
-                </Tab.Navigator>
+                    <Drawer.Screen name="Agenda" component={TabNav} />
+                    <Drawer.Screen name="Clientes" component={CustomerList} />
+                </Drawer.Navigator>
             </NavigationContainer>
         </>
     )

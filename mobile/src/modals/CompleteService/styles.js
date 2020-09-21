@@ -6,30 +6,33 @@ export const Container = styled.View`
 `;
 
 export const TitleForm = styled.Text`
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
     color: #303030;
-    margin-bottom: 15px;
+`;
+
+export const TitleDelete = styled(TitleForm)`
+    font-size: 14px;
+    color: #707070;
 `;
 
 export const ContainerBtn = styled.View`
-    flex-direction: row;
-    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
 `;
 
 export const BtnCheck = styled.TouchableOpacity`
-    width: 50%;
+    width: 80%;
     align-items: center;
-    padding: 10px;
-    margin: 5px 5px;
+    padding: 20px 10px;
+    margin: 10px 5px 5px 5px;
     background-color: #41c489;
 `;
 
-export const BtnClose = styled.TouchableOpacity`
-    width: 50%;
+export const BtnDelete = styled.TouchableOpacity`
+    flex-direction: row;
     align-items: center;
-    padding: 10px;
-    margin: 5px 5px;
-    background-color: #e65050;
+    justify-content: center;
+    margin: 15px 5px 0 5px;
 `;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-native-modal';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 
-import { Container, TitleForm, ContainerBtn, BtnCheck, BtnClose } from './styles'; 
+import { Container, TitleForm, ContainerBtn, BtnCheck, BtnDelete, TitleDelete } from './styles'; 
 
 export default function Scheduling({ show, close }) {
 
@@ -12,15 +12,16 @@ export default function Scheduling({ show, close }) {
             onBackdropPress={close}
         >
             <Container>
-                <TitleForm>Concluir Serviço?</TitleForm>
                 <ContainerBtn>
+                    <TitleForm>Concluir Serviço?</TitleForm>
                     <BtnCheck>
-                        <AntDesign name="check" size={18} color="#fff" />
+                        <AntDesign name="checkcircleo" size={22} color="#fff" />
                     </BtnCheck>
-                    <BtnClose>
-                        <AntDesign name="close" size={18} color="#fff" />
-                    </BtnClose>
                 </ContainerBtn>
+                <BtnDelete>
+                    <MaterialIcons name="delete" size={18} color="#bd4040"/>
+                    <TitleDelete>Excluir serviço</TitleDelete>
+                </BtnDelete>
             </Container>
         </Modal>
     )
