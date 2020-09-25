@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import ActionButton from 'react-native-action-button';
+import api from './../../services/api';
 
 import Schedule from './../../components/Schedule';
 import ModalSchedule from './../../modals/AddSchedule';
@@ -9,14 +10,21 @@ import { Container } from './styles';
 
 export default function SchedulingList() {
     const [modal, setModal] = useState(false);
+    const [schedule, setSchedule] = useState([]);
+    
+    useEffect(() => {
+        api.get('schedules').then(response => {
+            setSchedule(response.data);
+        })
+    }, [])
 
     return (
         <Container>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data = { [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
+                data = { schedule }
                 initialNumToRender={10}
-                renderItem = { ({ item }) => <Schedule /> }
+                renderItem = { ({ item }) => <Schedule content={item} /> }
                 keyExtractor={(item, index) => index.toString()}
             />
 

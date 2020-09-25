@@ -18,7 +18,13 @@ export default function Main() {
             />
             <NavigationContainer>
                 <Drawer.Navigator
-                    
+                    drawerStyle={{
+                        backgroundColor: "#ccc"
+                    }}
+                    drawerContentOptions={{
+                        activeTintColor: "#1cade8",
+                        inactiveTintColor: "#8a8a8a"
+                    }}
                 >
                     <Drawer.Screen name="Agenda" component={TabNav} />
                     <Drawer.Screen name="Clientes" component={CustomerList} />
