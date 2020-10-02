@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-native-modal';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 
 import { Container, TitleForm, ContainerBtn, BtnCheck, BtnDelete, TitleDelete } from './styles'; 
 
-export default function Scheduling({ show, close }) {
+export default function Scheduling({ show, close, content }) {
+    // criar uma tabela no banco de dados para  salvar os serviços completados
 
     return (
         <Modal
@@ -14,7 +15,7 @@ export default function Scheduling({ show, close }) {
             <Container>
                 <ContainerBtn>
                     <TitleForm>Concluir Serviço?</TitleForm>
-                    <BtnCheck>
+                    <BtnCheck onPress={() => {}}>
                         <AntDesign name="checkcircleo" size={22} color="#fff" />
                     </BtnCheck>
                 </ContainerBtn>

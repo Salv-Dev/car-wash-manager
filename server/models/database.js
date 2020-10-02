@@ -12,6 +12,15 @@ exports.tb_clients =
         }
     ];
 
+exports.tb_completedSchedule = [
+    {
+        "id": 1,
+        "client_name": "Fulano de tal",
+        "date": "00/00/0000",
+        "service": "Lavagem simples"
+    }
+];
+
 exports.tb_scheduling =
     [
         {

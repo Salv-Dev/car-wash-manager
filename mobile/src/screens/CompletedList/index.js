@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
-import ActionButton from 'react-native-action-button';
 import Customer from './../../components/Customer';
 
-import ModalCustomer from './../../modals/AddCustomer';
 import { Container } from './styles';
 
-export default function CustomerList() {
-    const [modal, setModal] = useState(false);
+export default function CompletedList() {
 
     return (
         <Container>

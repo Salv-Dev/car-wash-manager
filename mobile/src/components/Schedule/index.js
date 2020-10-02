@@ -17,6 +17,7 @@ export default function ScheduleComponent({ content }) {
             <CompleteService 
                 show={modal}
                 close={() => setModal(false)}
+                content={content}
             />
         </>
     )
