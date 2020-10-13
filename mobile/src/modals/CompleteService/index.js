@@ -17,12 +17,16 @@ export default function Scheduling({ show, close, content }) {
                     <BtnCheck onPress={() => {
                         api.post('completed', content);
                         close();
+                        api.delete(`schedule/${content.id}`);
                     }}
                     >
                         <AntDesign name="checkcircleo" size={22} color="#fff" />
                     </BtnCheck>
                 </ContainerBtn>
-                <BtnDelete>
+                <BtnDelete onPress={() => {
+                    close();
+                    api.delete(`schedule/${content.id}`);
+                }}>
                     <MaterialIcons name="delete" size={18} color="#bd4040"/>
                     <TitleDelete>Excluir serviço</TitleDelete>
                 </BtnDelete>

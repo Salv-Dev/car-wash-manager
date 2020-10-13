@@ -13,10 +13,10 @@ app.use(bodyParser.json());
 
 app.use('/api/v1', routes);
 
-io.on('connect', (socket) => {
-    console.log(' A new client connected');
+io.on('connection', (socket) => {
+    console.log(' A new client connected: ' + socket.id);
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('user ' + socket.id + ' disconnected');
     })
 })
 

@@ -21,7 +21,6 @@ export default function CompletedList() {
     const [state, dispatch] = useReducer(completedServiceReducer, initialState);
 
     const addService = (payload) => {
-        console.log(payload);
         dispatch({ type: 'ADD', payload})
     };
 
@@ -32,11 +31,9 @@ export default function CompletedList() {
     };
 
     useEffect(() => {
-        socket.on('connect', () => {
-            socket.on('getCompletedService', data => {
-                addService([data]);
-            })
-        })
+        socket.on('getCompletedService', data => {
+            addService([data]);
+        });
     }, []);
     
     useEffect(() => {

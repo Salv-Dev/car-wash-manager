@@ -98,5 +98,6 @@ exports.deleteSchedule = (req, res, next) => {
         res.status(200).json({
             success: "200 - success"
         });
+        io.emit('getRemovedService', { id: parseInt(req.params.id) });
     }
 }
