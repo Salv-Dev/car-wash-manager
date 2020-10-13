@@ -14,6 +14,8 @@ exports.postCompletedSchedule = (req, res, next) => {
     }
     tb_completedSchedule.push(schedule);
 
+    io.emit('getCompletedService', schedule);
+
     res.status(201).json({
         success: "201 - created",
         schedule

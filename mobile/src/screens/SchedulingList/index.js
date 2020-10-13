@@ -24,7 +24,7 @@ export default function SchedulingList() {
                 showsVerticalScrollIndicator={false}
                 data = { schedule }
                 initialNumToRender={10}
-                renderItem = { ({ item }) => <Schedule content={item} /> }
+                renderItem = { ({ item }) => <Schedule content={item} completed={false}/> }
                 keyExtractor={(item, index) => index.toString()}
             />
 

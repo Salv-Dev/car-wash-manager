@@ -9,17 +9,20 @@ export const Schedule = styled.TouchableOpacity`
 
 export const Date = styled.Text`
     font-size: 14px;
-    color: #fff;
+    text-decoration: ${props => props.completed ? "line-through" : "none"};
+    color: ${props => props.completed ? "#ccc" : "#fff"};
 `;
 
 export const Service = styled.Text`
-    color: #fff;
+    color: ${props => props.completed ? "#ccc" : "#fff"};
+    text-decoration: ${props => props.completed ? "line-through" : "none"};
     font-size: 16px;
     font-weight: bold;
 `;
 
 export const ClientName = styled.Text`
     color: #ccc;
+    text-decoration: ${props => props.completed ? "line-through" : "none"};
     font-size: 12px;
     font-style: italic;
 `
