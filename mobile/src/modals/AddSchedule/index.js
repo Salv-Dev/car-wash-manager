@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import Modal from 'react-native-modal';
 import RadioButton from 'radio-buttons-react-native';
 import { Picker } from '@react-native-community/picker';
@@ -6,6 +6,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import api from './../../services/api';
 
 import { Container, TitleForm, ClientInput, TitleInput, SelectDate, TextDate, DateInput, Title, Services, SendButton, TextButton } from './styles'; 
+import { socket } from '../../services/socket';
 
 const radio_props = [
     {label: 'Lavagem Simples'},
@@ -13,12 +14,21 @@ const radio_props = [
     {label: 'Lavagem completa s/ cera'}
 ];
 
+const listClientReducer = (state, action) => {
+    switch(action.type) {
+        case 'ADD':
+            return [...state, ...action.payload];
+        default:
+            throw new Error();
+    }
+}
+
 export default function Scheduling({ show, close }) {
-    const [clients, setClients] = useState([]);
     const [isDatePickerVisible, setDatePickerVisible] = useState(false);
     const [date, setDate] = useState('12/09/2020 - 20:00 - Selecione o horário');
     const [selectedClient, setSelectedClient] = useState();
     const [selectedService, setSelectedService] = useState();
+    const [state, dispatch] = useReducer(listClientReducer, []);
 
     const showDatePicker = () => {
         setDatePickerVisible(true);
@@ -40,8 +50,6 @@ export default function Scheduling({ show, close }) {
         const hour = d.getHours();
         const minutes = d.getMinutes();
 
-        console.log(typeof hour);
-
         if(hour >= 17 && minutes > 0){
             return 'fora do expediente';
         } else if(hour < 8) {
@@ -49,6 +57,10 @@ export default function Scheduling({ show, close }) {
         } else {
             return `${day < 10? "0"+day : day}/${month < 10? "0"+month : month}/${year} - ${hour < 10? "0"+hour : hour}:${minutes < 10? "0"+minutes : minutes}`;
         }
+    }
+
+    const handleListClient = (type, payload) => {
+        dispatch({ type, payload });
     }
 
     const submitSchedule = () => {
@@ -63,12 +75,18 @@ export default function Scheduling({ show, close }) {
     }
 
     useEffect(() => {
+        socket.on('getAddClient', data => {
+            handleListClient('ADD', [data]);
+        })
+    }, [])
+
+    useEffect(() => {
         api.get('clients').then(response => {
-            setClients(response.data);
+            handleListClient('ADD', response.data)
         }).catch(err => console.log(err));
     }, [])
 
-    let PickerItems = clients.map((client) => {
+    let PickerItems = state.map((client) => {
         return <Picker.Item key={client.id} label={client.name} value={client.name} />
     })
 

@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Customer, ClientName, ClientPhone } from './styles';
 
-export default function CustomerComponent() {
+export default function CustomerComponent({ content }) {
     return (
         <Customer>
-            <ClientName>Fulano de tal</ClientName>
-            <ClientPhone>(xx)xxxxx-xxxx</ClientPhone>
+            <ClientName>{content.name}</ClientName>
+            <ClientPhone>{content.phone}</ClientPhone>
         </Customer>
     )
 }

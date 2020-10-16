@@ -33,6 +33,9 @@ export default function SchedulingList() {
     useEffect(() => {
         socket.on('getRemovedService', data => {
             handleScheduleList('DEL', [data]);
+        });
+        socket.on('getAddService', data => {
+            handleScheduleList('ADD', [data]);
         })
     }, []);
     

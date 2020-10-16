@@ -42,12 +42,14 @@ exports.postClient = (req, res, next) => {
     const { name, phone } = req.body;
 
     const client = {
-        id: tb_clients.length+1,
+        id: tb_clients[tb_clients.length-1].id+1,
         name,
         phone
     }
 
     tb_clients.push(client)
+
+    io.emit('getAddClient', client);
 
     res.status(201).json({
         success: "201 - created",

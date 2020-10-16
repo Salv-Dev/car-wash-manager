@@ -50,6 +50,8 @@ exports.postSchedule = (req, res, next) => {
 
     tb_scheduling.push(schedule)
 
+    io.emit('getAddService', schedule);
+
     res.status(201).json({
         success: "201 - created",
         schedule
