@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-native-modal';
 import RadioButton from 'radio-buttons-react-native';
 import { Picker } from '@react-native-community/picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import api from './../../services/api';
 
 import { Container, TitleForm, ClientInput, TitleInput, SelectDate, TextDate, DateInput, Title, Services, SendButton, TextButton } from './styles'; 
 
@@ -12,16 +13,12 @@ const radio_props = [
     {label: 'Lavagem completa s/ cera'}
 ];
 
-const select_props = [
-    {label: 'Fulano de tal', value: 'Fulano de tal'},
-    {label: 'Ciclano de tal', value: 'Ciclano de tal'},
-    {label: 'Corinthians', value: 'Corinthians'},
-    {label: 'Brasil', value: 'Brasil'}
-]
-
 export default function Scheduling({ show, close }) {
+    const [clients, setClients] = useState([]);
     const [isDatePickerVisible, setDatePickerVisible] = useState(false);
     const [date, setDate] = useState('12/09/2020 - 20:00 - Selecione o horário');
+    const [selectedClient, setSelectedClient] = useState();
+    const [selectedService, setSelectedService] = useState();
 
     const showDatePicker = () => {
         setDatePickerVisible(true);
@@ -54,6 +51,27 @@ export default function Scheduling({ show, close }) {
         }
     }
 
+    const submitSchedule = () => {
+        const schedule = {
+            client_name: selectedClient,
+            date,
+            service: selectedService
+        };
+
+        api.post('schedule', schedule);
+        close();
+    }
+
+    useEffect(() => {
+        api.get('clients').then(response => {
+            setClients(response.data);
+        }).catch(err => console.log(err));
+    }, [])
+
+    let PickerItems = clients.map((client) => {
+        return <Picker.Item key={client.id} label={client.name} value={client.name} />
+    })
+
     return (
         <Modal
             isVisible={show}
@@ -64,13 +82,12 @@ export default function Scheduling({ show, close }) {
                 <ClientInput>
                     <TitleInput>Cliente</TitleInput>
                     <Picker
-                        selectedValue={"Corinthians"}
-                        onValueChange={() => {}}
+                        selectedValue={selectedClient}
+                        onValueChange={(value, index) => {
+                            setSelectedClient(value);
+                        }}
                     >
-                        <Picker.Item label="Fulano" value="Fulano" />
-                        <Picker.Item label="Ciclano" value="Ciclano" />
-                        <Picker.Item label="Corinthians" value="Corinthians" />
-                        <Picker.Item label="Brasil" value="Brasil" />
+                        { PickerItems }
                     </Picker>
                 </ClientInput>
                 <DateInput>
@@ -90,7 +107,9 @@ export default function Scheduling({ show, close }) {
                     <Title>Serviços</Title>
                     <RadioButton 
                         data={radio_props}
-                        selectedBtn={() => {}}
+                        selectedBtn={(value) => { 
+                            setSelectedService(value.label);
+                        }}
                         box={false}
                         circleSize={8}
                         activeColor="#1cade8"
@@ -98,7 +117,7 @@ export default function Scheduling({ show, close }) {
                         initial={1}
                     />
                 </Services>
-                <SendButton onPress={() => {}}>
+                <SendButton onPress={submitSchedule}>
                     <TextButton>Agendar</TextButton>
                 </SendButton>
             </Container>
