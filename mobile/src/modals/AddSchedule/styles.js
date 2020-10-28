@@ -29,7 +29,7 @@ export const SelectDate = styled.TouchableOpacity`
 `;
 
 export const TextDate = styled.Text`
-    color: #303030;
+    color: ${props => props.isDate ? "#303030" : "#bd4040"};
 `;
 
 export const Services = styled.View`

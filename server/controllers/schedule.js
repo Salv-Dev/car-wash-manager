@@ -68,9 +68,12 @@ exports.putSchedule = (req, res, next) => {
     const schedule = tb_scheduling.find(cl => cl.id == req.params.id);
 
     if(schedule != undefined) {
-        const { date, service } = req.body;
+        const { client_name, date, service } = req.body;
+        client_name != undefined ? schedule.client_name = client_name : null;
         date != undefined ? schedule.date = date : null;
         service != undefined ? schedule.service = service : null;
+
+        io.emit('editService', schedule);
 
         res.status(200).json({
             success: "200 - success"

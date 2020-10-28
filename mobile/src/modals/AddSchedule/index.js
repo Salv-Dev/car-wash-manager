@@ -25,7 +25,8 @@ const listClientReducer = (state, action) => {
 
 export default function Scheduling({ show, close }) {
     const [isDatePickerVisible, setDatePickerVisible] = useState(false);
-    const [date, setDate] = useState('12/09/2020 - 20:00 - Selecione o horário');
+    const [date, setDate] = useState('00/00/0000 - 00:00 - Selecione o horário');
+    const [isDate, setIsDate] = useState(true);
     const [selectedClient, setSelectedClient] = useState();
     const [selectedService, setSelectedService] = useState();
     const [state, dispatch] = useReducer(listClientReducer, []);
@@ -51,10 +52,13 @@ export default function Scheduling({ show, close }) {
         const minutes = d.getMinutes();
 
         if(hour >= 17 && minutes > 0){
+            setIsDate(false);
             return 'fora do expediente';
         } else if(hour < 8) {
+            setIsDate(false);
             return 'fora do expediente';
         } else {
+            setIsDate(true);
             return `${day < 10? "0"+day : day}/${month < 10? "0"+month : month}/${year} - ${hour < 10? "0"+hour : hour}:${minutes < 10? "0"+minutes : minutes}`;
         }
     }
@@ -64,6 +68,11 @@ export default function Scheduling({ show, close }) {
     }
 
     const submitSchedule = () => {
+        if(date == 'fora do expediente' || date == '00/00/0000 - 00:00 - Selecione o horário') {
+            setIsDate(false);
+            return;
+        };
+
         const schedule = {
             client_name: selectedClient,
             date,
@@ -111,7 +120,7 @@ export default function Scheduling({ show, close }) {
                 <DateInput>
                     <TitleInput>Horário</TitleInput>
                     <SelectDate onPress={showDatePicker}>
-                        <TextDate>{date}</TextDate>
+                        <TextDate isDate={isDate}>{date}</TextDate>
                     </SelectDate>
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}

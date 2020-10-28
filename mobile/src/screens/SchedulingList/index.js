@@ -9,14 +9,14 @@ import ModalSchedule from './../../modals/AddSchedule';
 
 import { Container } from './styles';
 
-const initialState = [];
-
 const scheduleListReducer = (state, action) => {
     switch(action.type) {
         case 'ADD':
             return [...state, ...action.payload];
         case 'DEL':
             return state.filter(item => item.id !== action.payload[0].id);
+        case 'EDIT':
+            return state.map(item => item.id == action.payload[0].id ? action.payload[0] : item);
         default:
             throw new Error();
     }
@@ -24,7 +24,7 @@ const scheduleListReducer = (state, action) => {
 
 export default function SchedulingList() {
     const [modal, setModal] = useState(false);
-    const [state, dispatch] = useReducer(scheduleListReducer, initialState);
+    const [state, dispatch] = useReducer(scheduleListReducer, []);
 
     const handleScheduleList = (type, payload) => {
         dispatch({ type, payload });
@@ -36,6 +36,9 @@ export default function SchedulingList() {
         });
         socket.on('getAddService', data => {
             handleScheduleList('ADD', [data]);
+        });
+        socket.on('editService', data => {
+            handleScheduleList('EDIT', [data]);
         })
     }, []);
     

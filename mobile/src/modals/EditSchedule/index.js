@@ -9,7 +9,7 @@ import { Container, TitleForm, ClientInput, TitleInput, SelectDate, TextDate, Da
 import { socket } from '../../services/socket';
 
 const radio_props = [
-    {label: 'Lavagem Simples'},
+    {label: 'Lavagem simples'},
     {label: 'Lavagem completa c/ cera'},
     {label: 'Lavagem completa s/ cera'}
 ];
@@ -77,6 +77,9 @@ export default function EditService({ show, close, content }) {
     useEffect(() => {
         socket.on('getAddClient', data => {
             handleListClient('ADD', [data]);
+        });
+        socket.on('editSchedule', data => {
+            
         })
     }, [])
 
@@ -132,7 +135,9 @@ export default function EditService({ show, close, content }) {
                         circleSize={8}
                         activeColor="#1cade8"
                         deactiveColor="#1cade8"
-                        initial={2}
+                        initial={
+                            (radio_props.indexOf(radio_props.filter(item => item.label == content.service)[0]))+1
+                        }
                     />
                 </Services>
                 <SendButton onPress={submitSchedule}>
