@@ -3,7 +3,7 @@ O *car wash manager* é um app para gerenciamento de lava-rápido/lava-jato feit
 *obs.:* Esse projeto foi feito para praticar os conhecimentos com as tecnologias listadas nesta documentação.
 
 ## Imagem do app
-![car-wash-manager](./images/example.gif)
+<img src="./images/example.gif" alt="car-wash-manager" height="800"/>
 
 ## Nele foi desenvolvido essas seções...
 1. Listar serviços em aberto.
