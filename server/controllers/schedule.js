@@ -42,7 +42,7 @@ exports.postSchedule = (req, res, next) => {
     const { client_name, date, service } = req.body;
 
     const schedule = {
-        id: tb_scheduling[tb_scheduling.length-1].id+1,
+        id: tb_scheduling.length == 0 ? 1 : tb_scheduling[tb_scheduling.length-1].id+1,
         client_name,
         date,
         service

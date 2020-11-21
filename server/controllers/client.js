@@ -42,7 +42,7 @@ exports.postClient = (req, res, next) => {
     const { name, phone } = req.body;
 
     const client = {
-        id: tb_clients[tb_clients.length-1].id+1,
+        id: tb_clients.length == 0 ? 1 : tb_clients[tb_clients.length-1].id+1,
         name,
         phone
     }
