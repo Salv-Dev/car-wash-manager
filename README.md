@@ -49,14 +49,14 @@ Car Wash Manager
 
 ### Iniciando o Front-End
 1. Clone o repositório: `git@github.com:Salv-Dev/car-wash-manager.git`
-2. Vá para a pasta mobile `cd mobile`
+2. Vá para o diretório `cd car-wash-manager/mobile`
 3. Rode `npm install` para instalar as dependências
 4. Rode `expo start` para iniciar o projeto e abrir o Metro Bundler no navegador
 5. Caso você tenha instalado o app Expo Go, com ele leia o qrcode que aparece no metro bundler
 <p>*obs.: se tiver algum erro de inicializacão no Expo Go, mude a conexão de LAN para TUNNEL no metro bundler</p>
 
 ### Iniciando o Back-End
-1. Vá para a pasta server `cd server`
+1. Vá para o diretório `cd car-wash-manager/server`
 2. Rode `npm install` para instalar as dependências
 3. Rode `npm start` para iniciar o servidor
 
